@@ -1,7 +1,7 @@
 # testcenter
 Python test tasks
 
-selenium_simple/ -\
+**selenium_simple/ -\**
 Описание таблиц:
 В таблице usn – признаки упрощенной системы налогообложения.
 В таблице dohrash – доходы и расходы компаний.
