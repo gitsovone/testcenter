@@ -1,0 +1,37 @@
+%%time
+import pandas as pd
+import pickle5 as pickle
+
+with open("contracts_data.pkl",'rb') as file_handle:
+    c = pickle.load(file_handle)
+
+df = pd.DataFrame(c)
+df_two = df[['_regNum', 'products.product']]
+
+mas = []
+for index, row in df_two.iterrows():
+    for el in row['products.product']:
+        mas.append(el)
+
+mas1 = pd.json_normalize(mas)
+
+maz = []
+for index, row in df_two.iterrows():
+    for el in row['products.product']:
+        f1 = row['_regNum']
+        my_dict = {"_regNum":f1}
+        maz.append(my_dict)
+        
+maz1 = pd.json_normalize(maz)
+an = maz1.groupby('_regNum').cumcount().add(1)
+
+an1 = pd.DataFrame(an)
+acc = []
+
+for i in an:
+    my_dict2 = {"inner_index" : i}
+    acc.append(my_dict2)
+    
+acc1 = pd.DataFrame(acc)
+res1 = pd.concat([maz1, acc1], axis=1)
+res2 = pd.concat([res1, mas1], axis=1)
