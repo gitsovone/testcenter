@@ -1,5 +1,5 @@
 # testcenter
-Python test tasks
+Tasks
 
 **selenium_simple/**\
 Описание таблиц:\
